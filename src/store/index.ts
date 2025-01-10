@@ -1,0 +1,39 @@
+import { createStore } from "vuex";
+import user from "./user";
+import ACCESS_ENUM from "@/access/accessEnum";
+
+interface RootState {
+  menuItems: { path: string; name: string; access: string }[];
+  user: {
+    loginUser: {
+      username: string;
+      userRole: string;
+    };
+  };
+  questionSubmitId: string; // 新增 questionSubmitId 状态
+}
+
+export default createStore<RootState>({
+  state: {
+    menuItems: [], // 存储菜单项
+    user: {
+      loginUser: {
+        username: "未登录", // 默认昵称为“未登录”
+        userRole: ACCESS_ENUM.NOT_LOGIN, // 默认用户角色为未登录
+      },
+    },
+    questionSubmitId: "", // 初始化为空
+  },
+  mutations: {
+    updateMenuItems(state, menuItems) {
+      state.menuItems = menuItems;
+    },
+    setQuestionSubmitId(state, id: string) {
+      state.questionSubmitId = id;
+    },
+  },
+  actions: {},
+  modules: {
+    user,
+  },
+});
