@@ -11,6 +11,7 @@ interface RootState {
     };
   };
   questionSubmitId: string; // 新增 questionSubmitId 状态
+  user_id: string;
 }
 
 export default createStore<RootState>({
@@ -19,10 +20,11 @@ export default createStore<RootState>({
     user: {
       loginUser: {
         username: "未登录", // 默认昵称为“未登录”
-        userRole: ACCESS_ENUM.NOT_LOGIN, // 默认用户角色为未登录
+        userRole: ACCESS_ENUM.NOT_LOGIN,
       },
     },
     questionSubmitId: "", // 初始化为空
+    user_id: "",
   },
   mutations: {
     updateMenuItems(state, menuItems) {

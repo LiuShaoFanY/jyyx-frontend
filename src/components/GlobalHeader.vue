@@ -13,7 +13,7 @@
         >
           <div class="title-bar">
             <img class="logo" src="../assets/oj-logo.png" />
-            <div class="title">OJ 系统</div>
+            <div class="title">代码评测</div>
           </div>
         </a-menu-item>
         <a-menu-item v-for="item in menuItems" :key="item.path">

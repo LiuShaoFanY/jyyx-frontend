@@ -9,7 +9,7 @@ import "bytemd/dist/index.css";
 import request from "@/utils/request";
 
 const app = createApp(App);
-// 使用 Arco Design 组件库
+//使用 Arco Design 组件库
 app.config.globalProperties.$request = request;
 app.config.globalProperties.$baseUrl = process.env.VUE_APP_BASEURL;
 console.log("Base URL:", process.env.VUE_APP_BASEURL);

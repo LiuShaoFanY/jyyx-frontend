@@ -139,11 +139,11 @@ const columns = [
     dataIndex: "language",
   },
   {
-    title: "判题信息",
+    title: "评测信息",
     slotName: "judgeInfo",
   },
   {
-    title: "判题状态",
+    title: "评测状态",
     dataIndex: "status",
   },
   {

@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 创建一个新的 axios 实例
 const request = axios.create({
-  baseURL: process.env.VUE_APP_BASEURL, // 后端的接口地址
+  baseURL: process.env.VUE_APP_BASEURL, // 直接使用后端地址
   timeout: 30000,
 });
 

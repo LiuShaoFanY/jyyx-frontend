@@ -4,7 +4,7 @@
       <a-layout-header class="header">
         <a-space>
           <img class="logo" src="../assets/oj-logo.png" />
-          <div class="title">面向教学应用的基于微服务架构的OJ判题系统设计</div>
+          <div class="title">代码评测</div>
         </a-space>
       </a-layout-header>
       <a-layout-content class="content">

@@ -15,8 +15,8 @@
         <MdEditor :handle-change="onAnswerChange" :value="form.answer" />
       </a-form-item>
 
-      <!--判题配置-->
-      <a-form-item :content-flex="false" :merge-props="false" label="判题配置">
+      <!--评测配置-->
+      <a-form-item :content-flex="false" :merge-props="false" label="评测配置">
         <a-space direction="vertical" style="min-width: 480px">
           <a-form-item field="judgeConfig.timeLimit" label="时间限制">
             <a-input-number
@@ -230,7 +230,7 @@ const doSubmit = async () => {
 };
 
 /**
- * 新增判题用例
+ * 新增评测用例
  */
 const handleAdd = () => {
   if (!hasPermission()) {

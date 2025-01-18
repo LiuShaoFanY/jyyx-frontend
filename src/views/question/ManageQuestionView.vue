@@ -94,11 +94,11 @@ const columns = [
     dataIndex: "acceptedNum",
   },
   {
-    title: "判题配置",
+    title: "评测配置",
     dataIndex: "judgeConfig",
   },
   {
-    title: "判题用例",
+    title: "评测用例",
     dataIndex: "judgeCase",
   },
   {

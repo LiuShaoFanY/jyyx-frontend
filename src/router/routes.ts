@@ -12,6 +12,8 @@ import QuestionsSubmitView from "@/views/question/QuestionsSubmitView.vue";
 import UserForgotPasswordView from "@/views/user/UserForgotPasswordView.vue";
 import AdminUserManagement from "@/views/AdminUserManagement.vue";
 import AnalysisView from "@/views/analysis/AnalysisView.vue";
+import HomeView from "@/views/home/HomeView.vue";
+import AdministratorOperationView from "@/views/user/AdministratorOperationView.vue";
 
 export const routes: Array<RouteRecordRaw> = [
   {
@@ -91,11 +93,15 @@ export const routes: Array<RouteRecordRaw> = [
     },
   },
   {
-    path: "/",
+    path: "/home",
     name: "主页",
-    component: QuestionsView,
+    component: HomeView,
     meta: {
-      access: ACCESS_ENUM.STUDENT, // 学生可以访问
+      access: [
+        ACCESS_ENUM.TEACHER,
+        ACCESS_ENUM.ADMINISTRATOR,
+        ACCESS_ENUM.STUDENT,
+      ], // 学生可以访问
     },
   },
   {
@@ -122,6 +128,14 @@ export const routes: Array<RouteRecordRaw> = [
     meta: {
       access: [ACCESS_ENUM.TEACHER, ACCESS_ENUM.ADMINISTRATOR], // 只有教师和超级管理员可以访问
       hideInMenu: false,
+    },
+  },
+  {
+    path: "/administrator_operation_view",
+    name: "超级管理员",
+    component: AdministratorOperationView,
+    meta: {
+      access: [ACCESS_ENUM.TEACHER, ACCESS_ENUM.ADMINISTRATOR], // 学生可以访问
     },
   },
 ];

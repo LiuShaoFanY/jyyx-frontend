@@ -7,7 +7,7 @@
             <a-card v-if="question" :title="question.title">
               <a-descriptions
                 :column="{ xs: 1, md: 2, lg: 3 }"
-                title="判题条件"
+                title="评测条件"
               >
                 <a-descriptions-item label="时间限制">
                   {{ question.judgeConfig.timeLimit ?? 0 }}
