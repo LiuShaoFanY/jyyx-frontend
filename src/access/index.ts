@@ -80,7 +80,7 @@ const updateMenu = (loginUser: LoginUser) => {
     },
     {
       path: "/analysis", // 动态路由，questionSubmitId 作为参数
-      name: "智能分析",
+      name: "智能个性化与教学指导页面",
       access: [ACCESS_ENUM.TEACHER, ACCESS_ENUM.ADMINISTRATOR], // 只有教师和超级管理员可以访问
     },
     {

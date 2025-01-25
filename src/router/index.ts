@@ -30,7 +30,7 @@ router.beforeEach(async (to, from, next) => {
     return;
   }
 
-  // 如果是智能分析页面，提取 questionSubmitId 并存储到 Vuex
+  // 如果是智能代码分析页面，提取 questionSubmitId 并存储到 Vuex
   if (to.path.startsWith("/analysis/")) {
     const questionSubmitId = to.params.questionSubmitId as string;
     console.log("Dynamic questionSubmitId:", questionSubmitId);

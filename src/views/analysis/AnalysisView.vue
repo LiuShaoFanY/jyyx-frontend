@@ -1,6 +1,6 @@
 <!--&lt;!&ndash;<template>&ndash;&gt;-->
 <!--&lt;!&ndash;  <div class="analysis-container">&ndash;&gt;-->
-<!--&lt;!&ndash;    <h1>智能分析页面</h1>&ndash;&gt;-->
+<!--&lt;!&ndash;    <h1>智能代码分析页面</h1>&ndash;&gt;-->
 <!--&lt;!&ndash;    <a-alert v-if="errorMessage" type="error" :message="errorMessage" />&ndash;&gt;-->
 <!--&lt;!&ndash;    <a-spin :spinning="loading">&ndash;&gt;-->
 <!--&lt;!&ndash;      <div v-if="analysisData">&ndash;&gt;-->
@@ -135,7 +135,7 @@
 <!--&lt;!&ndash;</style>&ndash;&gt;-->
 <!--<template>-->
 <!--  <div class="analysis-container">-->
-<!--    <h1>智能分析页面</h1>-->
+<!--    <h1>智能代码分析页面</h1>-->
 <!--    <a-alert v-if="errorMessage" type="error" :message="errorMessage" />-->
 <!--    <a-spin :spinning="loading">-->
 <!--      <div v-if="analysisData">-->
@@ -224,7 +224,7 @@
 <!--</style>-->
 <template>
   <div class="analysis-container">
-    <h1 class="page-title">智能分析页面</h1>
+    <h1 class="page-title">智能个性化和教学指导反馈</h1>
     <a-alert
       v-if="errorMessage"
       type="error"
@@ -240,7 +240,7 @@
           </p>
         </a-card>
 
-        <h2 class="section-title">教学指导</h2>
+        <h2 class="section-title">教学指导反馈</h2>
         <a-card class="guidance-card">
           <p class="guidance-text">
             <strong>{{ analysisData.teachingGuidance }}</strong>

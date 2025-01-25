@@ -19,7 +19,7 @@ export default {
   state: (): UserState => ({
     loginUser: {
       username: "未登录", // 默认昵称为“未登录”
-      userRole: ACCESS_ENUM.NOT_LOGIN, // 默认用户角色为未登录
+      userRole: ACCESS_ENUM.NOT_LOGIN, // 默/认用户角色为未登录
     },
   }),
 

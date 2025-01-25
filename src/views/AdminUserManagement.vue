@@ -1,90 +1,91 @@
 <template>
   <a-layout class="admin-user-management">
     <!-- 头部 -->
-    <a-layout-header>
-      <a-typography-title :level="2">超级管理员用户管理</a-typography-title>
+    <a-layout-header class="header">
+      <a-space>
+        <a-button type="primary" @click="goBack" class="back-button">
+          <icon-arrow-left />
+          返回上一页
+        </a-button>
+        <a-typography-title :level="2" class="title"
+          >用户管理</a-typography-title
+        >
+      </a-space>
     </a-layout-header>
 
     <!-- 内容 -->
-    <a-layout-content>
+    <a-layout-content class="content">
       <!-- 添加用户表单 -->
-      <a-card class="add-user-form" title="添加用户">
-        <!-- 使用下拉选择用户类型 -->
-        <a-select
-          v-model="userType"
-          placeholder="请选择用户类型"
-          style="margin-bottom: 10px"
-        >
-          <a-option value="student">学生</a-option>
-          <a-option value="teacher">教师</a-option>
-        </a-select>
-
-        <a-input
-          v-model="newUser.userAccount"
-          placeholder="账号"
-          style="margin-top: 10px"
-        />
-        <a-input-password
-          v-model="newUser.userPassword"
-          placeholder="密码"
-          style="margin-top: 10px"
-        />
-        <a-input-password
-          v-model="newUser.checkPassword"
-          placeholder="确认密码"
-          style="margin-top: 10px"
-        />
-
-        <!-- 学生信息 -->
-        <template v-if="userType === 'student'">
-          <a-input
-            v-model="newUser.studentId"
-            placeholder="学号"
-            style="margin-top: 10px"
-          />
-          <a-input
-            v-model="newUser.grade"
-            placeholder="年级"
-            style="margin-top: 10px"
-          />
-          <a-input
-            v-model="newUser.major"
-            placeholder="专业"
-            style="margin-top: 10px"
-          />
-        </template>
-
-        <!-- 教师信息 -->
-        <template v-if="userType === 'teacher'">
-          <a-input
-            v-model="newUser.teacherId"
-            placeholder="教师编号"
-            style="margin-top: 10px"
-          />
+      <a-card class="add-user-form" title="添加用户" :bordered="false">
+        <a-space direction="vertical" size="small" fill>
           <a-select
-            v-model="newUser.title"
-            placeholder="请选择职称"
-            style="margin-top: 10px"
+            v-model="userType"
+            placeholder="请选择用户类型"
+            class="select"
           >
-            <a-option value="教授">教授</a-option>
-            <a-option value="副教授">副教授</a-option>
-            <a-option value="讲师">讲师</a-option>
-            <a-option value="助教">助教</a-option>
+            <a-option value="student">学生</a-option>
+            <a-option value="teacher">教师</a-option>
           </a-select>
-          <a-input
-            v-model="newUser.department"
-            placeholder="部门"
-            style="margin-top: 10px"
-          />
-        </template>
 
-        <a-button type="primary" @click="addUser" style="margin-top: 10px">
-          添加用户
-        </a-button>
+          <a-input
+            v-model="newUser.userAccount"
+            placeholder="账号"
+            class="input"
+          />
+          <a-input-password
+            v-model="newUser.userPassword"
+            placeholder="密码"
+            class="input"
+          />
+          <a-input-password
+            v-model="newUser.checkPassword"
+            placeholder="确认密码"
+            class="input"
+          />
+
+          <!-- 学生信息 -->
+          <template v-if="userType === 'student'">
+            <a-input
+              v-model="newUser.studentId"
+              placeholder="学号"
+              class="input"
+            />
+            <a-input v-model="newUser.grade" placeholder="年级" class="input" />
+            <a-input v-model="newUser.major" placeholder="专业" class="input" />
+          </template>
+
+          <!-- 教师信息 -->
+          <template v-if="userType === 'teacher'">
+            <a-input
+              v-model="newUser.teacherId"
+              placeholder="教师编号"
+              class="input"
+            />
+            <a-select
+              v-model="newUser.title"
+              placeholder="请选择职称"
+              class="select"
+            >
+              <a-option value="教授">教授</a-option>
+              <a-option value="副教授">副教授</a-option>
+              <a-option value="讲师">讲师</a-option>
+              <a-option value="助教">助教</a-option>
+            </a-select>
+            <a-input
+              v-model="newUser.department"
+              placeholder="部门"
+              class="input"
+            />
+          </template>
+
+          <a-button type="primary" @click="addUser" class="button">
+            添加用户
+          </a-button>
+        </a-space>
       </a-card>
 
       <!-- 用户列表 -->
-      <a-card class="user-list" title="用户列表">
+      <a-card class="user-list" title="用户列表" :bordered="false">
         <a-table
           :columns="columns"
           :data="filteredUsers"
@@ -95,6 +96,7 @@
             total,
           }"
           @page-change="onPageChange"
+          class="table"
         >
           <template #details="{ record }">
             <div v-if="record.userRole === 'student' && record.studentInfo">
@@ -117,20 +119,40 @@
             </div>
           </template>
           <template #actions="{ record }">
-            <a-button type="text" @click="editUser(record)">编辑</a-button>
-            <a-button type="text" status="danger" @click="deleteUser(record)">
-              删除
-            </a-button>
-            <a-button type="text" @click="showUserDetails(record)">
-              查看详情
-            </a-button>
+            <a-space>
+              <a-button
+                type="text"
+                @click="editUser(record)"
+                class="action-button"
+              >
+                <icon-edit />
+                编辑
+              </a-button>
+              <a-button
+                type="text"
+                status="danger"
+                @click="deleteUser(record)"
+                class="action-button"
+              >
+                <icon-delete />
+                删除
+              </a-button>
+              <a-button
+                type="text"
+                @click="showUserDetails(record)"
+                class="action-button"
+              >
+                <icon-eye />
+                查看详情
+              </a-button>
+            </a-space>
           </template>
         </a-table>
       </a-card>
     </a-layout-content>
 
     <!-- 底部 -->
-    <a-layout-footer>© 2025 超级管理员</a-layout-footer>
+    <a-layout-footer class="footer">© 2025 超级管理员</a-layout-footer>
 
     <!-- 编辑用户模态框 -->
     <a-modal
@@ -138,37 +160,38 @@
       title="编辑用户"
       @ok="updateUser"
       @cancel="cancelEdit"
+      class="modal"
     >
       <a-form :model="editingUser" v-if="editingUser">
         <a-form-item label="账号">
-          <a-input v-model="editingUser.userAccount" />
+          <a-input v-model="editingUser.userAccount" class="input" />
         </a-form-item>
         <a-form-item label="密码">
-          <a-input-password v-model="editingUser.userPassword" />
+          <a-input-password v-model="editingUser.userPassword" class="input" />
         </a-form-item>
         <a-form-item
           v-if="editingUser.userRole === 'student' && editingUser.studentInfo"
           label="学号"
         >
-          <a-input v-model="editingUser.studentInfo.studentId" />
+          <a-input v-model="editingUser.studentInfo.studentId" class="input" />
         </a-form-item>
         <a-form-item
           v-if="editingUser.userRole === 'student' && editingUser.studentInfo"
           label="年级"
         >
-          <a-input v-model="editingUser.studentInfo.grade" />
+          <a-input v-model="editingUser.studentInfo.grade" class="input" />
         </a-form-item>
         <a-form-item
           v-if="editingUser.userRole === 'student' && editingUser.studentInfo"
           label="专业"
         >
-          <a-input v-model="editingUser.studentInfo.major" />
+          <a-input v-model="editingUser.studentInfo.major" class="input" />
         </a-form-item>
         <a-form-item
           v-if="editingUser.userRole === 'teacher' && editingUser.teacherInfo"
           label="教师编号"
         >
-          <a-input v-model="editingUser.teacherInfo.teacherId" />
+          <a-input v-model="editingUser.teacherInfo.teacherId" class="input" />
         </a-form-item>
         <a-form-item
           v-if="editingUser.userRole === 'teacher' && editingUser.teacherInfo"
@@ -177,6 +200,7 @@
           <a-select
             v-model="editingUser.teacherInfo.title"
             placeholder="请选择职称"
+            class="select"
           >
             <a-option value="教授">教授</a-option>
             <a-option value="副教授">副教授</a-option>
@@ -188,7 +212,7 @@
           v-if="editingUser.userRole === 'teacher' && editingUser.teacherInfo"
           label="部门"
         >
-          <a-input v-model="editingUser.teacherInfo.department" />
+          <a-input v-model="editingUser.teacherInfo.department" class="input" />
         </a-form-item>
         <a-form-item
           v-if="
@@ -197,7 +221,10 @@
           "
           label="管理员编号"
         >
-          <a-input v-model="editingUser.administratorInfo.adminId" />
+          <a-input
+            v-model="editingUser.administratorInfo.adminId"
+            class="input"
+          />
         </a-form-item>
         <a-form-item
           v-if="
@@ -206,7 +233,10 @@
           "
           label="部门"
         >
-          <a-input v-model="editingUser.administratorInfo.department" />
+          <a-input
+            v-model="editingUser.administratorInfo.department"
+            class="input"
+          />
         </a-form-item>
       </a-form>
     </a-modal>
@@ -216,6 +246,7 @@
       v-model:visible="userDetailsVisible"
       :title="`用户详情 - ${userDetails.userAccount || '未知用户'}`"
       @cancel="closeUserDetails"
+      class="modal"
     >
       <a-descriptions :column="1" v-if="userDetails.userAccount">
         <a-descriptions-item label="账号"
@@ -290,6 +321,19 @@
 import { computed, onMounted, ref } from "vue";
 import axios from "axios";
 import { Message } from "@arco-design/web-vue";
+import {
+  IconArrowLeft,
+  IconDelete,
+  IconEdit,
+  IconEye,
+} from "@arco-design/web-vue/es/icon";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+
+const goBack = () => {
+  router.go(-1);
+};
 
 interface UserRecord {
   id: string;
@@ -547,10 +591,6 @@ const columns = [
     title: "ID",
     dataIndex: "id",
   },
-  // {
-  //   title: "账号",
-  //   dataIndex: "userAccount",
-  // },
   {
     title: "姓名",
     dataIndex: "userName",
@@ -572,11 +612,103 @@ const columns = [
 
 <style scoped>
 .admin-user-management {
-  padding: 20px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f5f7fa, #e6e9ef);
+  min-height: 100vh;
+}
+
+.header {
+  background-color: #ffffff;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.title {
+  color: #2c3e50;
+  margin: 0;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.content {
+  margin-top: 16px;
 }
 
 .add-user-form,
 .user-list {
-  margin-bottom: 20px;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin-bottom: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.add-user-form:hover,
+.user-list:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+}
+
+.input,
+.select {
+  width: 100%;
+  margin-bottom: 8px;
+  border-radius: 6px;
+}
+
+.button {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #6a11cb, #2575fc);
+  color: white;
+  border: none;
+  transition: background 0.3s;
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #2575fc, #6a11cb);
+}
+
+.table {
+  margin-top: 16px;
+}
+
+.action-button {
+  margin-right: 8px;
+  transition: color 0.2s;
+}
+
+.action-button:hover {
+  color: #2575fc;
+}
+
+.footer {
+  text-align: center;
+  padding: 16px;
+  background-color: #ffffff;
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  margin-top: 16px;
+}
+
+.modal {
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.back-button {
+  background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+  border: none;
+  color: white;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.back-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 154, 158, 0.3);
 }
 </style>
